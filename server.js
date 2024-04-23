@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
 
-const notePath = path.join(__dirname, "db.json");
+const notePath = path.join(__dirname, "db/db.json");
 
 const app = express();
 const PORT = 3000;
@@ -36,9 +36,13 @@ app.post("/api/notes", (req, res) => {
 
       fs.writeFile(notePath, JSON.stringify(notes), (err) => {
         if (!err) {
-          res.json(note);
+          res.json(notes);
         }
-      });
+
+      }
+    );
+    }else{
+        console.log(err)
     }
   });
 });
